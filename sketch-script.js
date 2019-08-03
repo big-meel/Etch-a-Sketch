@@ -6,20 +6,26 @@ let gridRange = 16 * 16;
 
 resetButton.textContent = 'New Grid';
 resetButton.setAttribute('style', 'border-radius: 12px; padding: 5px; background-color: orange;\
-color: darkslategrey')
+color: darkslategrey');
+resetButton.setAttribute('id', 'btn');
 
 reset.setAttribute('style', 'display: flex; justify-content: center');
+reset.appendChild(resetButton);
 
-container.setAttribute('style', 'display: grid; grid-template-columns: repeat(16, auto);\
-border: 5px solid orange; grid-template-rows: repeat(16, auto)');  
+container.setAttribute('style', `display: grid; grid-template-columns: repeat(16, auto);\
+border: 5px solid orange; grid-template-rows: repeat(16, a uto)`);  
 
-//resetButton.addEventListener('click', newGrid());
 window.addEventListener('load', createGrid(gridRange));
 
-
+resetButton.addEventListener('click', function (e){
+    gridRange = prompt('Enter new Grid Range: ', '16');
+    while (container.hasChildNodes()){
+        container.removeChild(container.firstChild);
+    }
+    createGrid(gridRange*gridRange);
+});
 
 function createGrid(range){
-    reset.appendChild(resetButton);
     for (i = 0; i < range; i++){
         const square = document.createElement('div');
         square.classList.add('grid-square');
@@ -29,10 +35,6 @@ function createGrid(range){
     }       
 }
 
-function newGrid(){
-    let value = prompt('Enter new Grid Range: ', '16');
-    createGrid(value*value);
-}
 
 const pixels = document.getElementsByClassName('grid-square');
 
