@@ -18,3 +18,12 @@ function createGrid(){
 window.addEventListener('load', () => {
     createGrid();
 });
+
+const pixels = document.getElementsByClassName('grid-square');
+
+//Darkens grid pixel when pointer moves over it
+document.addEventListener('mouseover', function(e){
+    if(e.target.classList[0]==='grid-square'){
+        e.target.style.backgroundColor = 'dimgrey';
+    }
+});
