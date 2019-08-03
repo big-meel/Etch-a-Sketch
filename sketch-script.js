@@ -2,7 +2,7 @@ const reset = document.querySelector('#reset');
 const container = document.querySelector('#container');
 const resetButton =  document.createElement('button');
 
-let gridRange = 16 * 16;
+let gridRange = 16;
 
 resetButton.textContent = 'New Grid';
 resetButton.setAttribute('style', 'border-radius: 12px; padding: 5px; background-color: orange;\
@@ -12,16 +12,19 @@ resetButton.setAttribute('id', 'btn');
 reset.setAttribute('style', 'display: flex; justify-content: center');
 reset.appendChild(resetButton);
 
-container.setAttribute('style', `display: grid; grid-template-columns: repeat(16, auto);\
-border: 5px solid orange; grid-template-rows: repeat(16, a uto)`);  
+container.setAttribute('style', `display: grid; grid-template-columns: repeat(${gridRange}, auto);\
+border: 5px solid orange; grid-template-rows: repeat(${gridRange}, auto)`);  
 
-window.addEventListener('load', createGrid(gridRange));
+window.addEventListener('load', createGrid(gridRange*gridRange));
 
 resetButton.addEventListener('click', function (e){
     gridRange = prompt('Enter new Grid Range: ', '16');
     while (container.hasChildNodes()){
         container.removeChild(container.firstChild);
     }
+    container.setAttribute('style', `display: grid; grid-template-columns: repeat(${gridRange}, auto);\
+    border: 5px solid orange; grid-template-rows: repeat(${gridRange}, auto)`);  
+    
     createGrid(gridRange*gridRange);
 });
 
