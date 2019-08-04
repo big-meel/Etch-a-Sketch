@@ -7,7 +7,6 @@ let gridRange = 16;
 resetButton.textContent = 'New Grid';
 resetButton.setAttribute('style', 'border-radius: 12px; padding: 5px; background-color: orange;\
 color: darkslategrey');
-resetButton.setAttribute('id', 'btn');
 
 reset.setAttribute('style', 'display: flex; justify-content: center');
 reset.appendChild(resetButton);
@@ -28,6 +27,13 @@ resetButton.addEventListener('click', function (e){
     createGrid(gridRange*gridRange);
 });
 
+//Darkens grid pixel when pointer moves over it
+document.addEventListener('mouseover', function(e){
+    if(e.target.classList[0]==='grid-square'){
+        e.target.style.backgroundColor = 'dimgrey';
+    }
+});
+
 function createGrid(range){
     for (i = 0; i < range; i++){
         const square = document.createElement('div');
@@ -39,11 +45,3 @@ function createGrid(range){
 }
 
 
-const pixels = document.getElementsByClassName('grid-square');
-
-//Darkens grid pixel when pointer moves over it
-document.addEventListener('mouseover', function(e){
-    if(e.target.classList[0]==='grid-square'){
-        e.target.style.backgroundColor = 'dimgrey';
-    }
-});
